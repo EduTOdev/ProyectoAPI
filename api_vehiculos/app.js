@@ -4,6 +4,7 @@ import cors from 'cors'
 const app = express()
 
 app.use(cors());
+app.use(express.json());
 
 class vehiculo {
     constructor (placa, marca, modelo) {
@@ -59,7 +60,10 @@ app.get('/vehiculos/:id', (req, res) => {
     res.json(nuevo_almacen.buscarVehiculo(id));
 })
 
-
+app.post('/vehiculos/nuevo', (req, res) => {
+    let nuevo = req.body;
+    nuevo_almacen.agregarVehiculo(new vehiculo(nuevo.placa, nuevo.marca, nuevo.modelo));
+})
 
 app.delete('/vehiculos/:id', (req, res) => {
     let id = req.params.id;
