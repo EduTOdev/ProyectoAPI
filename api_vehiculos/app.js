@@ -20,28 +20,20 @@ class almacen {
     }
 
     agregarVehiculo(nuevo_vehiculo) {
-        this.vehiculos.forEach(vehiculo => {
-            if (vehiculo.placa === nuevo_vehiculo.placa) {
-                return -1;
-            }
-        });
+        let temp = this.vehiculos.find(vehiculo => vehiculo.placa === nuevo_vehiculo.placa);
+        if (temp)
+            return -1;
         this.vehiculos.push(nuevo_vehiculo);
     }
 
     buscarVehiculo(id) {
-        this.vehiculos.forEach(vehiculo => {
-            if (vehiculo.placa === id) {
-                return vehiculo;
-            }
-        });
+        return this.vehiculos.find(vehiculo => vehiculo.placa === id);
     }
 
     borrarVehiculo(id) {
         for (let i = 0; i < this.vehiculos.length; i++) {
             if (this.vehiculos[i].placa == id) {
-                let temp = this.vehiculos[i];
                 this.vehiculos.splice(i, 1);
-                return temp;
             }
         }
     }
