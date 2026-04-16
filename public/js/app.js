@@ -1,3 +1,5 @@
+const API_URL = "/vehiculos";
+
 const inputPlaca = document.getElementById("placa");
 const inputMarca = document.getElementById("marca");
 const inputModelo = document.getElementById("modelo");
@@ -10,7 +12,7 @@ const btnEliminar = document.getElementById("btnEliminar");
 const lista = document.getElementById("lista");
 
 btnAgregar.addEventListener("click", () => {
-    fetch("http://localhost:3000/vehiculos/nuevo", {
+    fetch(`${API_URL}/nuevo`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -24,7 +26,7 @@ btnAgregar.addEventListener("click", () => {
 });
 
 btnListar.addEventListener("click", () => {
-    fetch("http://localhost:3000/vehiculos")
+    fetch(API_URL)
     .then(res => res.json())
     .then(data => {
         let listado = "";
@@ -46,7 +48,7 @@ btnListar.addEventListener("click", () => {
 });
 
 btnBuscar.addEventListener("click", () => {
-    fetch(`http://localhost:3000/vehiculos/${inputPlaca.value}`)
+    fetch(`${API_URL}/${inputPlaca.value}`)
     .then(res => res.json())
     .then(vehiculo => {
         let listado = `
@@ -65,7 +67,7 @@ btnBuscar.addEventListener("click", () => {
 });
 
 btnEliminar.addEventListener("click", () => {
-    fetch(`http://localhost:3000/vehiculos/${inputPlaca.value}`, {
+    fetch(`${API_URL}/${inputPlaca.value}`, {
         method: "DELETE"
     })
 });
